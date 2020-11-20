@@ -137,3 +137,44 @@ const todosReducer = (
 		default: state;
 	}
 }
+
+type SelectedTodoActionTypes = SelectTodoActionType;
+const selectedTodoReducer = (
+	state: string | null = null,
+	action: SelectedTodoActionTypes
+) => {
+	switch (action.type) {
+		case SELECT_TODO: {
+			const {payload} = action;
+			return payload.id;
+		}
+		default: {
+			return state;
+		}
+	}
+}
+
+const counterReducer = (
+	state: number = 0,
+	action: TodoActionTypes
+) => {
+	switch (action.type) {
+		case CREATE_TODO: {
+			return state + 1;
+		}
+		case EDIT_TODO: {
+			return state + 1;
+		}
+		case TOGGLE_TODO: {
+			return state + 1;
+		}
+		case DELETE_TODO: {
+			return state + 1;
+		}
+		default: {
+			return state;
+		}
+	}
+}
+
+const reducers = 
