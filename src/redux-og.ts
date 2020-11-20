@@ -1,5 +1,6 @@
 import uuid from "uuid";
 import {Todo} from './type'
+import { createTodoActionCreator } from "./redux-og";
 
 // constants
 const CREATE_TODO = 'CREATE_TODO';
@@ -88,5 +89,39 @@ export const selectTodoActionCreator = ({
 	return {
 		type: SELECT_TODO,
 		payload: {id}
+	}
+}
+
+// Reducers
+const todosInitialState: Todo[] = [
+	{
+	  id: uuid(),
+	  desc: "Learn React",
+	  isComplete: true
+	},
+	{
+	  id: uuid(),
+	  desc: "Learn Redux",
+	  isComplete: true
+	},
+	{
+	  id: uuid(),
+	  desc: "Learn Redux-ToolKit",
+	  isComplete: false
+	}
+ ];
+
+type TodoActionTypes = CreateTodoActionType | EditTodoActionType | ToggleTodoActionType | DeleteTodoActionType
+const todosReducer = (
+	state: Todo[] = todosInitialState,
+	{type, payload}: TodoActionTypes
+) => {
+	switch (type) {
+		case CREATE_TODO: {
+			return [...state, payload];
+		}
+		case EDIT_TODO: {
+			return
+		}
 	}
 }
