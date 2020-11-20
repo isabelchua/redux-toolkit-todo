@@ -44,7 +44,7 @@ export const editTodoActionCreator = ({id, desc}: {
 	}
 }
 
-interface ToggleActionType {
+interface ToggleTodoActionType {
 	type: typeof TOGGLE_TODO;
 	payload: {id: string; isComplete: boolean}
 }
@@ -54,10 +54,39 @@ export const toggleTodoActionCreator = ({
 }: {
 	id: string;
 	isComplete: boolean;
-}): ToggleActionType => {
+}): ToggleTodoActionType => {
 	return {
 		type: TOGGLE_TODO,
 		payload: { id, isComplete }
 	}
 }
 
+interface DeleteTodoActionType {
+	type: typeof DELETE_TODO
+	payload: { id: string }
+}
+
+export const deleteTodoActionCreator = ({
+	id
+} : { id: string}) : DeleteTodoActionType => {
+	return {
+		type: DELETE_TODO,
+		payload: {id}
+	}
+}
+
+interface SelectTodoActionType {
+	type: typeof SELECT_TODO;
+	payload: {id: string}
+}
+
+export const selectTodoActionCreator = ({
+	id
+}: {
+	id: string;
+}): SelectTodoActionType => {
+	return {
+		type: SELECT_TODO,
+		payload: {id}
+	}
+}
