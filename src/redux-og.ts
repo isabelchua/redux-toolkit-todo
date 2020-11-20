@@ -183,3 +183,6 @@ const reducers = combineReducers({
 	selectedTodo: selectedTodoReducer,
 	counter: counterReducer
 })
+
+// store
+export default createStore(reducers);
