@@ -114,14 +114,26 @@ const todosInitialState: Todo[] = [
 type TodoActionTypes = CreateTodoActionType | EditTodoActionType | ToggleTodoActionType | DeleteTodoActionType
 const todosReducer = (
 	state: Todo[] = todosInitialState,
-	{type, payload}: TodoActionTypes
+	action: TodoActionTypes
 ) => {
-	switch (type) {
+	
+	switch (action.type) {
 		case CREATE_TODO: {
+			const {payload} = action;
 			return [...state, payload];
 		}
 		case EDIT_TODO: {
-			return
+			const {payload} = action;
+			return state.map(todo => todo.id === payload.id ?  {...todo, payload.desc} : todo )
 		}
+		case TOGGLE_TODO: {
+			const {payload} = action;
+			return state.map(todo=> todo.id === payload.id ? {...todo, isComplete: payload.isComplete}: todo)
+		}
+		case DELETE_TODO: {
+			const {payload} = action;
+			return state.filter(todo => todo.id !== payload.id)
+		}
+		default: state;
 	}
 }
