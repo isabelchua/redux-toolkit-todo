@@ -1,3 +1,4 @@
+import { combineReducers, createStore } from 'redux'
 import uuid from "uuid";
 import {Todo} from './type'
 import { createTodoActionCreator } from "./redux-og";
@@ -177,4 +178,8 @@ const counterReducer = (
 	}
 }
 
-const reducers = 
+const reducers = combineReducers({
+	todos: todosReducer,
+	selectedTodo: selectedTodoReducer,
+	counter: counterReducer
+})
